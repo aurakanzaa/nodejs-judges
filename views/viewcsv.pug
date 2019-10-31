@@ -7,33 +7,26 @@ html
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
-        
-   body(style='margin:0; padding:0')
-        p.greetings#peopleHello Hello From Pug Templating Engine!
-        div.table-responsive
-            table.table-hover#tabel(style='width:100%', border='1')
-                tr
-                    th no
-                    th code
-                    th nama
-                    th instansi
-                    th telepon
-                    th email
-                each elem in judges
-                    tr
-                        
-                        td
-                            p=elem.no
-                        td 
-                            p code=elem.code
-                        td 
-                            p nama=elem.nama
-                        td 
-                            p instansi=elem['instansi']
-                        td 
-                            p telp=elem['telp']
-                        td 
-                            p email=elem['email']
 
-        br
-        button.btn.btn-success button berhasil
+   body
+    .container
+      h2 Condensed Table
+      p
+        | Wakwaw
+      table.table.table-condensed
+        thead
+          tr
+            th Code
+            th Nama
+            th Instansi
+            th Telepon
+            th Email
+        tbody
+        each el in data
+          tr
+            td #{el.code}
+            td #{el.nama}
+            td #{el.instansi}
+            td #{el.telp}
+            td #{el.email}
+          

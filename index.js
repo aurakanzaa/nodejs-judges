@@ -1,43 +1,42 @@
-'use strict';
+'use strict'
 
-const express = require('express');
-const judges = require('./file/judges.json');
+const express = require('express')
 // Constants
-const PORT = 8080;
-const HOST = '0.0.0.0';
+const PORT = 8080
+const HOST = '0.0.0.0'
 
-var fs = require('fs');
+const fs = require('fs')
 // App
-const app = express();
+const app = express()
 
-app.set('views', 'views/');
-app.set('view engine', 'pug');
+app.set('views', 'views/')
+app.set('view engine', 'pug')
+
+let FILE_NAME = './file/judges.json'
 
 app.get('/', (req, res) => {
-  var json=(judges);
-  res.render('viewcsv', { title: 'Hello', judges})
-});
-
-// read file sample.json file
-fs.readFile('./file/judges.json',
-    // callback function that is called when reading file is done
-    function(err, data) { 
-        // json data
-        var jsonData = data;
- 
-        // parse json
-        var jsonParsed = JSON.parse(jsonData);
- 
-        // access elements
-        // console.log(jsonParsed.persons[0].name + "'s office phone number is " + jsonParsed.persons[0].phone.office);
-        // console.log(jsonParsed.persons[1].name + " is from " + jsonParsed.persons[0].city);
-});
+    fs.readFile(FILE_NAME, (error, data) => {
+        console.log('Async Read: starting...')
+        if (error) {
+            console.log('Async Read: NOT successful!')
+            console.log(error)
+        } else {
+            try {
+                const dataJson = JSON.parse(data)
+                console.log('Async Read: successful!')
+                console.log(dataJson)
+                res.render('viewcsv', { title: 'Hello', data: dataJson })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    })
+})
 
 app.get('*', (req, res, next) => {
-	res.status(200).send('Sorry, requested page not found.');
-	next();
-});
+    res.status(200).send('Sorry, requested page not found.')
+    next()
+})
 
-
-app.listen(PORT, HOST);
-console.log(`Magic happen on http://${HOST}:${PORT}`);
+app.listen(PORT, HOST)
+console.log(`Magic happen on http://${HOST}:${PORT}`)
