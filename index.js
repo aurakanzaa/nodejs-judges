@@ -9,13 +9,20 @@ const HOST = '0.0.0.0';
 var fs = require('fs');
 // App
 const app = express();
-
+var router=express.Router();
 app.set('views', 'views/');
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-  var json=(judges);
-  res.render('viewcsv', { title: 'Hello', judges})
+  var json= require('./file/judges.json');
+  res.render('viewcsv', { title: 'Hello', message: 'halo ara'})
+});
+
+/* GET Userlist page. */
+router.get('/userlist', function (req, res) {
+  var json = judges;
+  res.render('viewcsv', { viewcsv : json });
+
 });
 
 // read file sample.json file
@@ -38,6 +45,6 @@ app.get('*', (req, res, next) => {
 	next();
 });
 
-
+module.exports = router;
 app.listen(PORT, HOST);
 console.log(`Magic happen on http://${HOST}:${PORT}`);

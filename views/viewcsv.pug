@@ -11,6 +11,9 @@ html
    body(style='margin:0; padding:0')
         p.greetings#peopleHello Hello From Pug Templating Engine!
         div.table-responsive
+            button.btn.btn-primary Tambah Data
+            br
+            br
             table.table-hover#tabel(style='width:100%', border='1')
                 tr
                     th no
@@ -19,21 +22,19 @@ html
                     th instansi
                     th telepon
                     th email
-                each elem in judges
+                each elem in json
                     tr
+                        //- td
+                        //-     p= elem.no
+                        //- td 
+                        //-     p= elem.code
                         
-                        td
-                            p=elem.no
                         td 
-                            p code=elem.code
+                            p= elem.instansi
                         td 
-                            p nama=elem.nama
+                            p= elem.telp
                         td 
-                            p instansi=elem['instansi']
-                        td 
-                            p telp=elem['telp']
-                        td 
-                            p email=elem['email']
+                            p= elem.email
 
         br
         button.btn.btn-success button berhasil
