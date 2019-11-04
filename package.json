@@ -13,7 +13,8 @@
     "express": "^4.17.1",
     "pug": "^2.0.4",
     "save": "^2.4.0",
-    "sqlite3": "^4.1.0"
+    "sqlite3": "^4.1.0",
+    "sweetalert2": "^8.19.0"
   },
   "keywords": [],
   "author": "ara",

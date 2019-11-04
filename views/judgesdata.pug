@@ -34,11 +34,7 @@ html
             td(contenteditable='true') #{el.email}
             td
               a.btn.btn-primary(href='/juri/' +el.no) Edit            
-              a.btn.btn-warning(href='/delete/'+el.no) Delete            
-            //- td
-            //-   form(name='delete-item'+el.no action='/delete' method='POST')
-            //-     input(type='hidden' name='no' value=el.no)
-            //-     input(name='delete-btn' class='btn btn-xs btn-danger' type='submit' value='x') 
-
+              a.btn.btn-danger(href='/delete/'+el.no onclick='return confirm("Are you sure you want to delete this item?");') Delete      
+             
 
     
