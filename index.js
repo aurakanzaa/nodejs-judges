@@ -7,11 +7,14 @@ const HOST = "0.0.0.0";
 
 const fs = require("fs");
 const db = require("./sqlite-config");
+const bodyParser = require('body-parser');
+
 // App
 const app = express();
 
 app.set("views", "views/");
 app.set("view engine", "pug");
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 let FILE_NAME = "./file/judges.json";
 
@@ -26,7 +29,7 @@ app.get("/", (req, res) => {
       try {
         const dataJson = JSON.parse(data);
         console.log("Async Read: successful!");
-        console.log(dataJson);
+        //console.log(dataJson);
         res.render("viewcsv", { title: "Hello", data: dataJson });
       } catch (error) {
         console.log(error);
@@ -44,18 +47,25 @@ app.get("/juri", (req, res) => {
 
 // insert database judges_list
 app.post("/insert", (req,res) =>{
-    const {code, nama, instansi, telp, email} = req.body
-    con.query(
-        `INSERT INTO judges_list SET code='${code}', nama=${nama}, instansi=${instansi}, telp=${telp}, email=${email}`,
+    let { code, nama, instansi, telp, email } = req.body
+    let query = `INSERT INTO judges_list (code, nama, instansi, telp, email) VALUES ('${code}','${nama}','${instansi}' ,${telp}, '${email}') `
+    db.run(
+        query,
         function(err,result){
-            res.redirect("/insert")
+            if(err){
+                console.log(err)
+                console.log(query)
+            }else {
+                console.log('It Works')
+                res.redirect('/juri')
+            }
         }
     )
 });
 
 app.get('/insertjudges/insert', function(req, res) {
-    res.render("/insertjudges/insert")
-  });
+    res.render("insertjudges")
+});
 
 // update
 app.post('/update', (req, res) => {
