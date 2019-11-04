@@ -26,12 +26,12 @@ html
         tbody
         each el in data
           tr
-            td #{el.no}
-            td #{el.code}
-            td #{el.nama}
-            td #{el.instansi}
-            td #{el.telp}
-            td #{el.email}
+            td(contenteditable='true') #{el.no}
+            td(contenteditable='true') #{el.code}
+            td(contenteditable='true') #{el.nama}
+            td(contenteditable='true') #{el.instansi}
+            td(contenteditable='true') #{el.telp}
+            td(contenteditable='true') #{el.email}
             td
               form(name='update-item'+el.no action='/update' method='POST')
                 input(type='hidden' name='no' value=el.no)
