@@ -75,6 +75,13 @@ app.get('/juri/:no', (req,res) => {
   })
 })
 
+// app.get('/delete/:no', (req,res) => {
+//   let query = `SELECT * from judges_list where no = ?`;
+//   db.get(query, req.params.no, (err, row)  => {
+//     res.render("judgesdata", { data: row });
+//   })
+// })
+
 // update the data
 app.post('/juri/:no/update', (req,res) => {
   let { code, nama, instansi, telp, email } = req.body
@@ -91,16 +98,18 @@ app.post('/juri/:no/update', (req,res) => {
 })
 
 // delete
-app.post("/delete", (req, res) => {
+app.delete("/delete/:no/delete", (req, res) => {
     console.log(req.body.no);
-    let sql = "DELETE FROM judges_list WHERE no=?";
-    db.run(sql,
+    let query = `DELETE FROM judges_list WHERE no=?`;
+    db.run(query,
     req.body.no,
-    (err) =>{
-        if(err)
-            res.send(err);
-        else
-            res.redirect("/juri");
+    function(err,result){
+      if(err){
+        console.log(err)
+      }else {
+          console.log('delete success')
+          res.redirect('/juri')
+      }
     });
 });
 
