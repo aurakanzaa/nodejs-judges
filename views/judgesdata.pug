@@ -12,7 +12,7 @@ html
     .container
       h2 Judges
       
-      a(href='' class='btn btn-primary') Tambah Data
+      a(href='/insertjudges' class='btn btn-primary') Tambah Data
       table.table.table-condensed
         thead
           tr
@@ -22,6 +22,7 @@ html
             th Instansi
             th Telepon
             th Email
+            th Action
         tbody
         each el in data
           tr
@@ -31,4 +32,8 @@ html
             td #{el.instansi}
             td #{el.telp}
             td #{el.email}
-          
+            td
+              a(href='', class='btn btn-xs btn-primary', data-id='{{no}}') edit
+              a(href='/delete', class='btn btn-xs btn-danger') delete
+
+    

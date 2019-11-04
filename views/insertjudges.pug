@@ -12,7 +12,7 @@ html
     .container
         h1 Jade - node template engine
     #container.col
-      form(method='post', action='/insert')
+      form(method='POST', action='/insert')
         table.table.table-condensed
           tbody
             tr
@@ -37,5 +37,5 @@ html
                 input(type='email', name='email')
 
         br
-        a(href='' class='btn btn-primary') Tambah Data
+        button(type='submit' class='btn btn-primary') Tambah Data
         

@@ -54,8 +54,26 @@ app.post("/insert", (req,res) =>{
 });
 
 app.get('/insertjudges/insert', function(req, res) {
-    res.render("insertjudges")
+    res.render("/insertjudges/insert")
   });
+
+// update
+app.post('/update', (req, res) => {
+    let sql = "UPDATE judges_list SET code='"+req.body.code+"', nama='"+req.body.nama+"', instansi='"+req.body.instansi+"', telp='"+req.body.telp+"', email='"+req.body.email+"' WHERE no="+req.body.no;
+    let query = conn.query(sql, (err,results) => {
+        if(err) throw err;
+        res.redirect('/juri');
+    });
+});
+
+// delete
+app.post("/delete", (req, res) => {
+    let sql = "DELETE FROM judges_list WHERE no="+req.body.no+"";
+    let query = conn.query(sql, (err, result) => {
+        if(err) throw err;
+            res.redirect('/juri');
+    });
+});
 
 app.get("*", (req, res, next) => {
   res.status(200).send("Sorry, requested page not found.");
