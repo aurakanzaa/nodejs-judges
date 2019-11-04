@@ -69,19 +69,29 @@ app.get('/insertjudges/insert', function(req, res) {
 
 // update
 app.post('/update', (req, res) => {
+    console.log(req.body.no);
     let sql = "UPDATE judges_list SET code='"+req.body.code+"', nama='"+req.body.nama+"', instansi='"+req.body.instansi+"', telp='"+req.body.telp+"', email='"+req.body.email+"' WHERE no="+req.body.no;
-    let query = conn.query(sql, (err,results) => {
-        if(err) throw err;
-        res.redirect('/juri');
+    db.run(sql,
+    req.body.no,
+    (err)=>{
+        if(err)
+            res.send(err);
+        else
+            res.redirect("/juri");
     });
 });
 
 // delete
 app.post("/delete", (req, res) => {
-    let sql = "DELETE FROM judges_list WHERE no="+req.body.no+"";
-    let query = conn.query(sql, (err, result) => {
-        if(err) throw err;
-            res.redirect('/juri');
+    console.log(req.body.no);
+    let sql = "DELETE FROM judges_list WHERE no=?";
+    db.run(sql,
+    req.body.no,
+    (err) =>{
+        if(err)
+            res.send(err);
+        else
+            res.redirect("/juri");
     });
 });
 

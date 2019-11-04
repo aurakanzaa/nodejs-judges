@@ -33,7 +33,15 @@ html
             td #{el.telp}
             td #{el.email}
             td
-              a(href='', class='btn btn-xs btn-primary', data-id='{{no}}') edit
-              a(href='/delete', class='btn btn-xs btn-danger') delete
+              form(name='update-item'+el.no action='/update' method='POST')
+                input(type='hidden' name='no' value=el.no)
+                input(name='update-btn' class='btn btn-xs btn-success' type='submit' value='edit') 
+            
+            td
+              form(name='delete-item'+el.no action='/delete' method='POST')
+                input(type='hidden' name='no' value=el.no)
+                input(name='delete-btn' class='btn btn-xs btn-danger' type='submit' value='x') 
+              //- a(href='', class='btn btn-xs btn-primary', data-id='{{no}}') edit
+
 
     
