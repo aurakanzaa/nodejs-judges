@@ -33,6 +33,14 @@ app.get('/', (req, res) => {
     })
 })
 
+// show all data
+app.get('/juri',(req,res) =>{
+    db.all('SELECT * FROM judges_list',(err,rows) =>{
+        console.log(rows);
+        res.render("judgesdata", {data: rows});
+        
+    });
+})
 app.get('*', (req, res, next) => {
     res.status(200).send('Sorry, requested page not found.')
     next()
