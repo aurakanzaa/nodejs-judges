@@ -67,17 +67,6 @@ app.get('/insertjudges/insert', function(req, res) {
     res.render("insertjudges")
 });
 
-// update
-// app.post('/update', (req, res) => {
-//     console.log(req.body.no);
-//     let sql = "UPDATE judges_list SET code='"+req.body.code+"', nama='"+req.body.nama+"', instansi='"+req.body.instansi+"', telp='"+req.body.telp+"', email='"+req.body.email+"' WHERE no="+req.body.no;
-//     db.run(sql,
-//     req.body.no,
-//       (err, rows) => {
-//         console.log(rows)
-//     });
-// });
-
 // get by id 
 app.get('/juri/:no', (req,res) => {
     let query = `SELECT * from judges_list where no = ?`;
