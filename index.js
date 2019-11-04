@@ -47,20 +47,20 @@ app.get("/juri", (req, res) => {
 
 // insert database judges_list
 app.post("/insert", (req,res) =>{
-    let { code, nama, instansi, telp, email } = req.body
-    let query = `INSERT INTO judges_list (code, nama, instansi, telp, email) VALUES ('${code}','${nama}','${instansi}' ,${telp}, '${email}') `
-    db.run(
-        query,
-        function(err,result){
-            if(err){
-                console.log(err)
-                console.log(query)
-            }else {
-                console.log('It Works')
-                res.redirect('/juri')
-            }
-        }
-    )
+  let { code, nama, instansi, telp, email } = req.body
+  let query = `INSERT INTO judges_list (code, nama, instansi, telp, email) VALUES ('${code}','${nama}','${instansi}' ,${telp}, '${email}') `
+  db.run(
+      query,
+      function(err,result){
+          if(err){
+              console.log(err)
+              console.log(query)
+          }else {
+              console.log('It Works')
+              res.redirect('/juri')
+          }
+      }
+  )
 });
 
 app.get('/insertjudges/insert', function(req, res) {
@@ -75,12 +75,6 @@ app.get('/juri/:no', (req,res) => {
   })
 })
 
-// app.get('/delete/:no', (req,res) => {
-//   let query = `SELECT * from judges_list where no = ?`;
-//   db.get(query, req.params.no, (err, row)  => {
-//     res.render("judgesdata", { data: row });
-//   })
-// })
 
 // update the data
 app.post('/juri/:no/update', (req,res) => {
@@ -108,7 +102,7 @@ app.delete("/delete/:no/delete", (req, res) => {
         console.log(err)
       }else {
           console.log('delete success')
-          res.redirect('/juri')
+          res.render('get_judges')
       }
     });
 });
