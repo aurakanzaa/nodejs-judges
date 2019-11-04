@@ -1,7 +1,4 @@
-{
-  "judges":
-  [
-  {
+[{
     "no": 1,
     "code": "CIN",
     "nama": "Agus Hardiman",
@@ -697,5 +694,4 @@
     "telp": 62811209770,
     "email": "asa@stei.itb.ac.id"
   }
-  ]
-}
+]

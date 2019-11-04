@@ -1,21 +1,20 @@
 const db = require("../sqlite-config");
 
 db.serialize(() => {
-  let sql = `INSERT INTO favorite_songs (title, artist) VALUES (?,?)`;
+  let sql = `INSERT INTO judges_list (code,nama,instansi,telp,email) VALUES (?,?,?,?,?)`;
   let stmt = db.prepare(sql);
-  let songs = [
-    ["Kertoyono Medot Janji", "Denni Caknan"],
-    ["Cidro", "Didi Kempot"],
-    ["Ditinggal Rabi", "Nella Kharisma"],
-    ["Korban Janji", "Guyon Waton"]
+  let judges = [
+    ["CIN", "Annisa Mei", "Test", 9999, "test@gmail.com"],
+    ["DEA", "Annisa Mei", "Test", 9999, "test@gmail.com"],
+    
   ];
 
-  songs.forEach(song => {
-    stmt.run(song, err => {
+  judges.forEach(juri => {
+    stmt.run(juri, err => {
       if (err) throw err;
     });
   });
-  console.log(`${songs.length} record inserted`);
+  console.log(`${judges.length} record inserted`);
   stmt.finalize();
 });
 

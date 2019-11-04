@@ -7,34 +7,28 @@ html
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
-        
-   body(style='margin:0; padding:0')
-        p.greetings#peopleHello Hello From Pug Templating Engine!
-        div.table-responsive
-            button.btn.btn-primary Tambah Data
-            br
-            br
-            table.table-hover#tabel(style='width:100%', border='1')
-                tr
-                    th no
-                    th code
-                    th nama
-                    th instansi
-                    th telepon
-                    th email
-                each elem in json
-                    tr
-                        //- td
-                        //-     p= elem.no
-                        //- td 
-                        //-     p= elem.code
-                        
-                        td 
-                            p= elem.instansi
-                        td 
-                            p= elem.telp
-                        td 
-                            p= elem.email
 
-        br
-        button.btn.btn-success button berhasil
+   body
+    .container
+      h2 Judges
+      
+      a(href='' class='btn btn-primary') Tambah Data
+      table.table.table-condensed
+        thead
+          tr
+            th no
+            th Code
+            th Nama
+            th Instansi
+            th Telepon
+            th Email
+        tbody
+        each el in data
+          tr
+            td #{el.no}
+            td #{el.code}
+            td #{el.nama}
+            td #{el.instansi}
+            td #{el.telp}
+            td #{el.email}
+          
