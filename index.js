@@ -68,18 +68,38 @@ app.get('/insertjudges/insert', function(req, res) {
 });
 
 // update
-app.post('/update', (req, res) => {
-    console.log(req.body.no);
-    let sql = "UPDATE judges_list SET code='"+req.body.code+"', nama='"+req.body.nama+"', instansi='"+req.body.instansi+"', telp='"+req.body.telp+"', email='"+req.body.email+"' WHERE no="+req.body.no;
-    db.run(sql,
-    req.body.no,
-    (err)=>{
-        if(err)
-            res.send(err);
-        else
-            res.redirect("/juri");
-    });
-});
+// app.post('/update', (req, res) => {
+//     console.log(req.body.no);
+//     let sql = "UPDATE judges_list SET code='"+req.body.code+"', nama='"+req.body.nama+"', instansi='"+req.body.instansi+"', telp='"+req.body.telp+"', email='"+req.body.email+"' WHERE no="+req.body.no;
+//     db.run(sql,
+//     req.body.no,
+//       (err, rows) => {
+//         console.log(rows)
+//     });
+// });
+
+// get by id 
+app.get('/juri/:no', (req,res) => {
+    let query = `SELECT * from judges_list where no = ?`;
+    db.get(query, req.params.no, (err, row)  => {
+      res.render("get_judges", { data: row });
+  })
+})
+
+// update the data
+app.post('/juri/:no/update', (req,res) => {
+  let { code, nama, instansi, telp, email } = req.body
+  let query = `UPDATE judges_list SET code = '${code}', nama = '${nama}', instansi ='${instansi}' , telp = ${telp}, email ='${email}' WHERE no = ? `
+  db.run(query, req.params.no, 
+    function(err,result){
+    if(err){
+        console.log(err)
+    }else {
+        console.log('Update success')
+        res.redirect('/juri')
+    }
+  })
+})
 
 // delete
 app.post("/delete", (req, res) => {

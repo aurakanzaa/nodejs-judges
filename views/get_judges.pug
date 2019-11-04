@@ -1,0 +1,41 @@
+doctype html
+html
+   head
+        title Judges
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+
+   body
+    .container
+        h1 Jade - node template engine
+    #container.col
+      form(method='POST', action=`/juri/${data.no}/update`)
+        table.table.table-condensed
+          tbody
+            tr
+              td code
+              td
+                input(type='text', name='code' value=data.code)
+            tr
+              td nama
+              td
+                input(type='text', name='nama' value=data.nama)
+            tr
+              td instansi
+              td
+                input(type='text', name='instansi' value=data.instansi)
+            tr
+              td No Telp
+              td
+                input(type='number', name='telp' value=data.number)
+            tr
+              td email
+              td
+                input(type='email', name='email' value=data.email)
+
+        br
+        button(type='submit' class='btn btn-primary') Tambah Data
+        
