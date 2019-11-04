@@ -92,17 +92,17 @@ app.post('/juri/:no/update', (req,res) => {
 })
 
 // delete
-app.delete("/delete/:no/delete", (req, res) => {
-    console.log(req.body.no);
+app.get("/delete/:no", (req, res) => {
+    console.log(req.params.no);
     let query = `DELETE FROM judges_list WHERE no=?`;
     db.run(query,
-    req.body.no,
+    req.params.no,
     function(err,result){
       if(err){
         console.log(err)
-      }else {
+      } else {
           console.log('delete success')
-          res.render('get_judges')
+          res.redirect('/juri')
       }
     });
 });
